@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    {% include 'base_style.html' %}
+</head>
+<body>
+    <div class='container'>
+        <div class='section success message-box'>
+            <h3>✅ {{ title.upper() }}</h3>
+            <p>{{ message }}</p>
+            {% if details %}
+                <ul class='details-list'>
+                {% for key, value in details.items() %}
+                    <li><strong>{{ key }}:</strong>
+                        {% if key == "Enrollment Confidence (Quality)" or key == "Match Confidence" or key == "Presented Fingerprint Quality" or key == "Highest Match Confidence Found" %}
+                            <div class="progress-bar-container">
+                                <div class="progress-bar {{ value.class }}" style="width: {{ (value.score * 100) | int }}%;">
+                                    {{ (value.score * 100) | int }}% {{ 'Quality' if 'Quality' in key else 'Match' }}
+                                </div>
+                            </div>
+                        {% elif key == "Detailed Analysis at Enrollment" %}
+                            <ul>
+                            {% for detail_key, detail_value in value.items() %}
+                                {% if detail_key != 'individual_scores' %}
+                                    <li>{{ detail_key | replace('_', ' ') | title }}: {% if detail_key == 'minutiae_count' %} {{ detail_value }} {% else %} {{ "%.3f"|format(detail_value) }} {% endif %}</li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            {{ value | safe }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class='action-buttons'>
+            <a href='/'>Back to Main Page</a>
+            <a href='{{ back_url }}'>{{ back_text }}</a>
+        </div>
+    </div>
+</body>
+</html>

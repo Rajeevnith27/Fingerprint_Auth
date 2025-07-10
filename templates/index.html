@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fuzzy Extractor Fingerprint Authentication</title>
+    {% include 'base_style.html' %}
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Fuzzy Extractor Fingerprint Authentication System</h1>
+
+        <div class="section info message-box">
+            <h3>🛡️ Advanced Fingerprint Detection Criteria (Relaxed for Demo)</h3>
+            <div class="thresholds">
+                <div><strong>Ridge Density:</strong> ≥ {{ thresholds.ridge_density }}</div>
+                <div><strong>Orientation Consistency:</strong> ≥ {{ thresholds.orientation_consistency }}</div>
+                <div><strong>Minutiae Count:</strong> ≥ {{ thresholds.minutiae_count }}</div>
+                <div><strong>Contrast Ratio:</strong> ≥ {{ thresholds.contrast_ratio }}</div>
+                <div><strong>Frequency Score:</strong> ≥ {{ thresholds.frequency_score }}</div>
+                <div><strong>Overall Score:</strong> ≥ {{ thresholds.overall_score }}</div>
+            </div>
+            <p><strong>Enrolled Fingerprints:</strong> {{ fp_count }}</p>
+            <p class="warning message-box"><strong>Note:</strong> Thresholds are configured for flexible matching in development. For high-security environments, use tighter constraints to prevent false acceptancey.</p>
+            <p class="info message-box"><strong>Security Mode:</strong> The cryptographic key is validated even in cases of perfect fingerprint similarity..</p>
+        </div>
+
+        <div class="section">
+            <h3>➕ Enroll Fingerprint</h3>
+            <form action="/enroll" method="post" enctype="multipart/form-data" onsubmit="showLoading('enroll')">
+                <input type="text" name="fingerprint_name" placeholder="Enter a Unique Fingerprint Name (e.g., Right_Thumb)" required><br>
+                <input type="file" name="bio" accept="image/*" required><br>
+                <input type="submit" value="Enroll Fingerprint">
+            </form>
+            <div id="loadingMessageEnroll" class="loading-message">
+                <p>Processing enrollment... Please wait.</p>
+                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGRkN2NmNjMxN2FlOWQ5ZjdmZmY1MzY2ZTE2N2U3ZDk3ZGYwNzFlYyZlcD1MVjgw/3oEjI6SIIQA3fvfJqM/giphy.gif" alt="Loading..." width="50" height="50">
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🔑 Authenticate Fingerprint (Identification)</h3>
+            <form action="/authenticate" method="post" enctype="multipart/form-data" onsubmit="showLoading('auth')">
+                <input type="file" name="bio" accept="image/*" required><br>
+                <input type="submit" value="Identify Fingerprint">
+            </form>
+            <div id="loadingMessageAuth" class="loading-message">
+                <p>Processing authentication... Please wait.</p>
+                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGRkN2NmNjMxN2FlOWQ5ZjdmZmY1MzY2ZTE2N2U3ZDk3ZGYwNzFlYyZlcD1MVjgw/3oEjI6SIIQA3fvfJqM/giphy.gif" alt="Loading..." width="50" height="50">
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📊 System Status</h3>
+            <div class="nav-links">
+                <a href="/logs" target="_blank">View Authentication Logs (JSON)</a>
+                <a href="/fingerprints" target="_blank">View Enrolled Fingerprints (JSON)</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showLoading(type) {
+            if (type === 'enroll') {
+                document.getElementById('loadingMessageEnroll').style.display = 'block';
+            } else if (type === 'auth') {
+                document.getElementById('loadingMessageAuth').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

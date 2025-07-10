@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enroll Fingerprint</title>
+    {% include 'base_style.html' %}
+    <style>
+        .container {
+            max-width: 600px; /* Smaller container for simple forms */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>➕ Enroll Fingerprint</h1>
+        <div class="section">
+            <form action="/enroll" method="post" enctype="multipart/form-data" onsubmit="showLoading('enroll')">
+                <input type="text" name="fingerprint_name" placeholder="Enter a Unique Fingerprint Name (e.g., Right_Thumb)" required><br>
+                <input type="file" name="bio" accept="image/*" required><br>
+                <input type="submit" value="Enroll Fingerprint">
+            </form>
+            <div id="loadingMessageEnroll" class="loading-message">
+                <p>Processing enrollment... Please wait.</p>
+                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGRkN2NmNjMxN2FlOWQ5ZjdmZmY1MzY2ZTE2N2U3ZDk3ZGYwNzFlYyZlcD1MVjgw/3oEjI6SIIQA3fvfJqM/giphy.gif" alt="Loading..." width="50" height="50">
+            </div>
+        </div>
+        <div class='action-buttons'>
+            <a href='/'>Back to Main Page</a>
+        </div>
+    </div>
+    <script>
+        function showLoading(type) {
+            if (type === 'enroll') {
+                document.getElementById('loadingMessageEnroll').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

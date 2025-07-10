@@ -1,0 +1,94 @@
+[
+    {
+        "timestamp": 1751223622.3357718,
+        "fingerprint_name": "rajeev",
+        "success": true,
+        "confidence_score": 0.9356926456637724,
+        "quality_score": 0.9356926456637724,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1751223634.241974,
+        "fingerprint_name": "dip",
+        "success": true,
+        "confidence_score": 0.9038316917958882,
+        "quality_score": 0.9038316917958882,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1751223644.7018921,
+        "fingerprint_name": "abha",
+        "success": true,
+        "confidence_score": 0.9585547808446665,
+        "quality_score": 0.9585547808446665,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1751223655.04177,
+        "fingerprint_name": "nishant",
+        "success": true,
+        "confidence_score": 0.857649592259975,
+        "quality_score": 0.857649592259975,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1751223665.55672,
+        "fingerprint_name": "harsh",
+        "success": true,
+        "confidence_score": 0.9790761519207838,
+        "quality_score": 0.9790761519207838,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1751223673.832614,
+        "fingerprint_name": "rajeev",
+        "success": true,
+        "confidence_score": 1.0,
+        "quality_score": 0.9356926456637724,
+        "match_details": "Identification successful."
+    },
+    {
+        "timestamp": 1751260827.931432,
+        "fingerprint_name": "x",
+        "success": true,
+        "confidence_score": 0.9631588549149254,
+        "quality_score": 0.9631588549149254,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1751260845.901052,
+        "fingerprint_name": "xyz",
+        "success": true,
+        "confidence_score": 0.880075987772026,
+        "quality_score": 0.880075987772026,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1751352470.532856,
+        "fingerprint_name": "abc",
+        "success": false,
+        "confidence_score": 0.0,
+        "quality_score": 0.0,
+        "match_details": "Enrollment failed: Not a valid fingerprint (detection)."
+    },
+    {
+        "timestamp": 1752133059.2973819,
+        "fingerprint_name": "Ashish Ranjan",
+        "success": true,
+        "confidence_score": 0.7613261113273588,
+        "quality_score": 0.7613261113273588,
+        "match_details": "Enrollment successful."
+    },
+    {
+        "timestamp": 1752133074.4905427,
+        "fingerprint_name": "Ashish Ranjan",
+        "success": true,
+        "confidence_score": 1.0,
+        "quality_score": 0.7613261113273588,
+        "match_details": "Identification successful."
+    },
+    {
+        "timestamp": 1752133084.597546,
+        "fingerprint_name": "N/A",
+        "success": false,
+        "confidence_score": 

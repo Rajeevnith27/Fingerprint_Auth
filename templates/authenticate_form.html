@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authenticate Fingerprint</title>
+    {% include 'base_style.html' %}
+    <style>
+        .container {
+            max-width: 600px; /* Smaller container for simple forms */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Authenticate Fingerprint</h1>
+        <div class="section">
+            <form action="/authenticate" method="post" enctype="multipart/form-data" onsubmit="showLoading('auth')">
+                <input type="file" name="bio" accept="image/*" required><br>
+                <input type="submit" value="Identify Fingerprint">
+            </form>
+            <div id="loadingMessageAuth" class="loading-message">
+                <p>Processing authentication... Please wait.</p>
+                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGRkN2NmNjMxN2FlOWQ5ZjdmZmY1MzY2ZTE2N2U3ZDk3ZGYwNzFlYyZlcD1MVjgw/3oEjI6SIIQA3fvfJqM/giphy.gif" alt="Loading..." width="50" height="50">
+            </div>
+        </div>
+        <div class='action-buttons'>
+            <a href='/'>Back to Main Page</a>
+        </div>
+    </div>
+    <script>
+        function showLoading(type) {
+            if (type === 'auth') {
+                document.getElementById('loadingMessageAuth').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
