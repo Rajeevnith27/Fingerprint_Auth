@@ -5,6 +5,11 @@ from werkzeug.utils import secure_filename
 import time
 import json # For BiometricDatabase if using JSON files
 import sqlite3 # Just in case the user's previous app.py used it for get_db_connection
+from dotenv import load_dotenv
+
+load_dotenv()
+
+port=PORT or 5000
 
 # Import modules from your project
 # Assuming config.py and features.py are in the same directory
@@ -513,5 +518,5 @@ def authenticate_form():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=port)
 
