@@ -4,4 +4,4 @@ scikit-image
 reedsolo
 Flask
 werkzeug
-dotenv
+os

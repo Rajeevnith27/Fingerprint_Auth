@@ -5,10 +5,9 @@ from werkzeug.utils import secure_filename
 import time
 import json # For BiometricDatabase if using JSON files
 import sqlite3 # Just in case the user's previous app.py used it for get_db_connection
-from dotenv import load_dotenv
 
-load_dotenv()
-
+import os
+PORT =os.getenv('PORT')
 port=PORT or 5000
 
 # Import modules from your project
