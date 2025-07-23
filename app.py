@@ -101,7 +101,7 @@ def calculate_orientation_consistency(orientations):
             block = orientations[i:i+block_size, j:j+block_size]
             mean_sin = np.mean(np.sin(2 * block))
             mean_cos = np.mean(np.cos(2 * block))
-            consistency = np.sqrt(mean_sin*2 + mean_cos*2)
+            consistency = np.sqrt(mean_sin**2 + mean_cos**2)
             consistencies.append(consistency)
     return np.mean(consistencies) if consistencies else 0.0
 
@@ -126,7 +126,7 @@ def analyze_frequency_domain(img):
     h, w = magnitude_spectrum.shape
     center_y, center_x = h // 2, w // 2
     y, x = np.ogrid[:h, :w]
-    distances = np.sqrt((x - center_x)*2 + (y - center_y)*2)
+    distances = np.sqrt((x - center_x)**2 + (y - center_y)**2)
     low_freq = np.sum(magnitude_spectrum[distances < 10])
     mid_freq = np.sum(magnitude_spectrum[(distances >= 10) & (distances < 30)])
     high_freq = np.sum(magnitude_spectrum[distances >= 30])
@@ -245,7 +245,7 @@ def extract_enhanced_features(image_path):
     # Gradient features
     grad_x = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
     grad_y = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
-    grad_magnitude = np.sqrt(grad_x*2 + grad_y*2)
+    grad_magnitude = np.sqrt(grad_x**2 + grad_y**2)
     features.extend([np.mean(grad_magnitude), np.std(grad_magnitude)])
 
     # Ridge orientation features
@@ -324,7 +324,7 @@ def index():
             
             <div class="mb-10 p-6 bg-blue-50 border border-blue-200 text-blue-800 rounded-xl shadow-md">
                 <h3 class="text-2xl font-semibold mb-4 flex items-center text-blue-900">
-                    <span class="mr-3">🛡</span>Advanced Fingerprint Detection Criteria
+                    <span class="mr-3">🛡️</span>Advanced Fingerprint Detection Criteria
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-base sm:text-lg text-gray-700">
                     <div><strong class="font-medium">Ridge Density:</strong> <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-md text-sm font-mono">&ge; {{ thresholds.ridge_density }}</span></div>
@@ -559,7 +559,7 @@ def enroll():
                 <p class="text-lg text-gray-700 mb-2">Fingerprint Name: <span class="font-mono bg-green-100 text-green-800 px-2 py-1 rounded-md">{fingerprint_name}</span></p>
                 <p class="text-lg text-gray-700 mb-4">Enrollment Confidence: <span class="font-mono bg-green-100 text-green-800 px-2 py-1 rounded-md">{fp_confidence:.3f}</span></p>
                 <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-800 break-all">
-                    <strong class="font-semibold text-red-900">⚠ For Demo Only: Secret Key (K):</strong><br>
+                    <strong class="font-semibold text-red-900">⚠️ For Demo Only: Secret Key (K):</strong><br>
                     <span class="font-mono">{k_hex}</span>
                 </div>
                 <a href='/' class='mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition duration-200'>
@@ -747,7 +747,7 @@ def authenticate():
                     
                     <p class="text-lg text-gray-700 mb-4">Presented Fingerprint Quality: <span class="font-mono bg-green-100 text-green-800 px-2 py-1 rounded-md">{fp_confidence_presented:.3f}</span></p>
                     <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-800 break-all">
-                        <strong class="font-semibold text-red-900">⚠ For Demo Only: Recovered Key (K'):</strong><br>
+                        <strong class="font-semibold text-red-900">⚠️ For Demo Only: Recovered Key (K'):</strong><br>
                         <span class="font-mono">{k_recovered_hex}</span>
                     </div>
                     <a href='/' class='mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition duration-200'>
@@ -791,7 +791,7 @@ def authenticate():
                     
                     <p class="text-lg text-gray-700 mb-4">Presented Fingerprint Quality: <span class="font-mono bg-red-100 text-red-800 px-2 py-1 rounded-md">{fp_confidence_presented:.3f}</span></p>
                     <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-800 break-all">
-                        <strong class="font-semibold text-red-900">⚠ For Demo Only: Recovered Key (K'):</strong><br>
+                        <strong class="font-semibold text-red-900">⚠️ For Demo Only: Recovered Key (K'):</strong><br>
                         <span class="font-mono">{k_recovered_hex}</span>
                     </div>
                     <a href='/' class='mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition duration-200'>
@@ -856,5 +856,5 @@ def get_fingerprints():
     return jsonify(safe_fp_list)
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 5000))  
     app.run(host='0.0.0.0', port=port)
