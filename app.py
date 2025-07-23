@@ -44,7 +44,7 @@ FINGERPRINT_THRESHOLDS = {
 
 class BiometricDatabase:
     """Simulates a database for storing fingerprints and authentication logs."""
-    def _init_(self):
+    def __init__(self):
         self.fingerprints = {} # Stores enrolled fingerprint templates, keyed by fingerprint_name
         self.auth_logs = []    # Stores authentication attempt logs
         self.failed_attempts = {} # Tracks failed attempts per fingerprint_name
